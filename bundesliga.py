@@ -21,7 +21,6 @@ location_available = {
 
 # 2. Create the CSP
 
-
 problem = Problem()
 
 # One variable for every unordered pair of teams.
@@ -53,6 +52,12 @@ for team1, team2 in team_pairs:
                     domain.append(
                         (first_home, first_slot, second_slot)
                     )
+
+    # Check that at least one possible schedule exists.
+    if not domain:
+        raise ValueError(
+            f"No possible schedule for the pair {team1} and {team2}."
+        )
 
     problem.addVariable(variable, domain)
 
